@@ -1,0 +1,47 @@
+{% extends 'monitor/base.html' %}
+
+{% block title %}Dashboard - Healthcare Vital Monitor{% endblock %}
+
+{% block content %}
+
+<h1>Healthcare Vital Signs Dashboard</h1>
+
+<p>Monitor and manage recorded patient vital signs.</p>
+
+<div class="cards">
+
+    <div class="card">
+        <h3>Total Readings</h3>
+        <p>{{ total_readings }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Total Patients</h3>
+        <p>{{ total_patients }}</p>
+    </div>
+
+    <div class="card">
+        <h3>Latest Reading</h3>
+
+        {% if latest %}
+            <p style="font-size: 18px;">
+                {{ latest.patient_name }}<br>
+                {{ latest.recorded_at|date:"M d, Y H:i" }}
+            </p>
+        {% else %}
+            <p style="font-size: 18px;">No readings yet.</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+<a href="{% url 'add_reading' %}" class="button">
+    Add New Reading
+</a>
+
+<a href="{% url 'readings' %}" class="button">
+    View Readings
+</a>
+
+{% endblock %}

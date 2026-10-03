@@ -1,0 +1,23 @@
+{% extends 'monitor/base.html' %}
+
+{% block title %}Add Reading - Healthcare Vital Monitor{% endblock %}
+
+{% block content %}
+
+<h1>Add Vital Sign Reading</h1>
+
+<p>Enter the patient's current vital-sign information.</p>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit">
+        Save Reading
+    </button>
+
+</form>
+
+{% endblock %}

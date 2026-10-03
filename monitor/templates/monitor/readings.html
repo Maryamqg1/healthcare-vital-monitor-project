@@ -1,0 +1,53 @@
+{% extends 'monitor/base.html' %}
+
+{% block title %}Vital Readings - Healthcare Vital Monitor{% endblock %}
+
+{% block content %}
+
+<h1>Vital Sign Readings</h1>
+
+<p>View all recorded patient vital signs.</p>
+
+<a href="{% url 'add_reading' %}" class="button">
+    Add New Reading
+</a>
+
+<br><br>
+
+{% if readings %}
+
+<table>
+    <thead>
+        <tr>
+            <th>Patient ID</th>
+            <th>Patient Name</th>
+            <th>Temperature</th>
+            <th>Heart Rate</th>
+            <th>SpO₂</th>
+            <th>Blood Pressure</th>
+            <th>Recorded At</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for reading in readings %}
+        <tr>
+            <td>{{ reading.patient_id }}</td>
+            <td>{{ reading.patient_name }}</td>
+            <td>{{ reading.temperature }} °C</td>
+            <td>{{ reading.heart_rate }} bpm</td>
+            <td>{{ reading.spo2 }}%</td>
+            <td>{{ reading.blood_pressure }}</td>
+            <td>{{ reading.recorded_at|date:"M d, Y H:i" }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+
+<p>No vital-sign readings have been recorded yet.</p>
+
+{% endif %}
+
+{% endblock %}
